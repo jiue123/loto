@@ -1,0 +1,22 @@
+.circle {
+    background: #5EA226;
+    border-radius: 100%;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 30em;
+    text-align: center;
+    width: 30em;
+    p {
+        font-size: 14em;
+        margin-bottom: 0;
+    }
+}
+
+.buttonGroup {
+    button {
+        font-size: 2em;
+    }
+}
