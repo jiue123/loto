@@ -7,7 +7,7 @@
 
 require('./bootstrap');
 
-// window.Vue = require('vue');
+window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -33,5 +33,9 @@ require('./bootstrap');
 // });
 
 $(document).ready(() => {
-    require('./components/style');
+    if ($('.main-container').length > 0) {
+        require('./components/zepto');
+        require('./components/tagcanvas');
+        require('./components/style');
+    }
 });
