@@ -10874,3 +10874,11 @@ input[type=submit] {
   margin-right: 30px;
 }
 
+.guest-container table tr td {
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  width: 80px;
+  height: 80px;
+}
+

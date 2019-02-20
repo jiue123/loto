@@ -116,8 +116,23 @@ while(i < 91) {
         methods: {
             reset: function(){
                 if(confirm('Are you want to reset?')){
-                    localStorage.clear();
-                    location.reload(true);
+                    var form = document.getElementById('resetForm'),
+                        formData = new FormData(form);
+                    $.ajax({
+                        type: 'POST',
+                        url: form.getAttribute('action'),
+                        data: formData,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                    }).done(function(result) {
+                        console.log(result);
+                    }).fail(function(xhr, status, error) {
+                        console.error(xhr, status, error);
+                    }).always(function() {
+                        localStorage.clear();
+                        location.reload(true);
+                    });
                 }
             },
             onClick: function(num){

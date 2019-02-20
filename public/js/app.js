@@ -38302,6 +38302,10 @@ $(document).ready(function () {
 
     __webpack_require__(/*! ./components/style */ "./resources/js/components/style.js");
   }
+
+  if ($('.guest-container').length > 0) {
+    __webpack_require__(/*! ./components/guest */ "./resources/js/components/guest.js");
+  }
 });
 
 /***/ }),
@@ -38366,6 +38370,25 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/guest.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/guest.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).on('click', '.guest-container table tr td', function (e) {
+  var $target = $(e.target);
+
+  if ($target.hasClass('bg-danger')) {
+    $target.removeClass('bg-danger');
+  } else {
+    $target.addClass('bg-danger');
+  }
+});
 
 /***/ }),
 
@@ -38506,8 +38529,23 @@ while (i < 91) {
     methods: {
       reset: function reset() {
         if (confirm('Are you want to reset?')) {
-          localStorage.clear();
-          location.reload(true);
+          var form = document.getElementById('resetForm'),
+              formData = new FormData(form);
+          $.ajax({
+            type: 'POST',
+            url: form.getAttribute('action'),
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false
+          }).done(function (result) {
+            console.log(result);
+          }).fail(function (xhr, status, error) {
+            console.error(xhr, status, error);
+          }).always(function () {
+            localStorage.clear();
+            location.reload(true);
+          });
         }
       },
       onClick: function onClick(num) {

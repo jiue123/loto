@@ -194,6 +194,10 @@
         <button class="pure-button button-warning" @click="reset">Reset</button>
         <button class="pure-button button-show" @click="showResult">Show Result</button>
     </div>
+    <form id="resetForm" action="{{ route('guest.update', ['id' => 0]) }}">
+        @csrf
+        @method('PUT')
+    </form>
 <script>
     document.getElementById('navbarLaravel').style.display = 'none';
 </script>

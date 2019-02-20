@@ -11,7 +11,9 @@
 |
 */
 
-Route::resource('/', 'ClientController');
+Route::resource('guest', 'ClientController');
+Route::get('alreadyHaveAccount', 'ClientController@alreadyHaveAccount')->name('alreadyHaveAccount');
+Route::post('redirectToShow', 'ClientController@redirectToShow')->name('redirectToShow');
 
 Auth::routes();
 

@@ -38,4 +38,7 @@ $(document).ready(() => {
         require('./components/tagcanvas');
         require('./components/style');
     }
+    if ($('.guest-container').length > 0) {
+        require('./components/guest');
+    }
 });
