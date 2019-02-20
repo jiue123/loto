@@ -172,17 +172,27 @@
         padding: 0 !important;
     }
 </style>
-    <div id="main" class="wall main-container">
-    </div>
-    <div id="result" class="result">
+    <div id="main" class="wall main-container"></div>
+    <div id="result" class="result"></div>
+    <div id="allResult" class="all-result">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Result</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
     <div id="tools" class="tools">
         <button
                 class="pure-button"
                 @click="toggle"
                 :class="{'button-secondary': !running,
-           'button-success': running}">@{{running?'Stop!':'Start'}}</button>
+           'button-success': running}">@{{running? 'Stop' : 'Start'}}</button>
         <button class="pure-button button-warning" @click="reset">Reset</button>
+        <button class="pure-button button-show" @click="showResult">Show Result</button>
     </div>
 <script>
     document.getElementById('navbarLaravel').style.display = 'none';
