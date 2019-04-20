@@ -198,7 +198,17 @@
         @csrf
         @method('PUT')
     </form>
-<script>
+    <form id="update" action="{{ route('main.update', ['id' => 0]) }}">
+        @csrf
+        @method('PUT')
+        <input id="wonID" name="id" type="hidden">
+    </form>
+<script type="text/javascript">
     document.getElementById('navbarLaravel').style.display = 'none';
+
+    var member = [];
+    @foreach($allGuest as $key => $value)
+        member[{{$key}}] = { "name" : {{$value->id}} };
+    @endforeach
 </script>
 @endsection

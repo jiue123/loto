@@ -1,12 +1,12 @@
-var i= 1, member = [];
-while(i < 91) {
-    member[i-1] = {
-        "name": i
-    };
-    i++;
-};
+// var i= 1, member = [];
+// while(i < 1000) {
+//     member[i-1] = {
+//         "name": i
+//     };
+//     i++;
+// };
 
-(function(){
+(function() {
     var choosed = JSON.parse(localStorage.getItem('choosed')) || {};
     var choosedCustom = JSON.parse(localStorage.getItem('choosedCustom')) || {};
     console.log(choosed);
@@ -18,7 +18,7 @@ while(i < 91) {
     };
     var createHTML = function(){
         var html = [ '<ul>' ];
-        member.forEach(function(item, index){
+        member.forEach(function(item, index) {
             item.index = index;
             var key = getKey(item);
             var color = choosed[key] ? 'yellow' : 'white';
@@ -48,43 +48,62 @@ while(i < 91) {
                 choosed[getKey(m)] = 1;
 
                 switch (true) {
-                    case getKey(m) < 10:
+                    case getKey(m) < 100000:
                         choosedCustom[0] = choosedCustom[0] || {};
                         Vue.set(choosedCustom[0], getKey(m), getKey(m));
                         break;
-                    case getKey(m) < 20:
-                        choosedCustom[1] = choosedCustom[1] || {};
-                        Vue.set(choosedCustom[1], getKey(m), getKey(m));
-                        break;
-                    case getKey(m) < 30:
-                        choosedCustom[2] = choosedCustom[2] || {};
-                        Vue.set(choosedCustom[2], getKey(m), getKey(m));
-                        break;
-                    case getKey(m) < 40:
-                        choosedCustom[3] = choosedCustom[3] || {};
-                        Vue.set(choosedCustom[3], getKey(m), getKey(m));
-                        break;
-                    case getKey(m) < 50:
-                        choosedCustom[4] = choosedCustom[4] || {};
-                        Vue.set(choosedCustom[4], getKey(m), getKey(m));
-                        break;
-                    case getKey(m) < 60:
-                        choosedCustom[5] = choosedCustom[5] || {};
-                        Vue.set(choosedCustom[5], getKey(m), getKey(m));
-                        break;
-                    case getKey(m) < 70:
-                        choosedCustom[6] = choosedCustom[6] || {};
-                        Vue.set(choosedCustom[6], getKey(m), getKey(m));
-                        break;
-                    case getKey(m) < 80:
-                        choosedCustom[7] = choosedCustom[7] || {};
-                        Vue.set(choosedCustom[7], getKey(m), getKey(m));
-                        break;
-                    case getKey(m) <= 90:
-                        choosedCustom[8] = choosedCustom[8] || {};
-                        Vue.set(choosedCustom[8], getKey(m), getKey(m));
-                        break;
+                    // case getKey(m) < 20:
+                    //     choosedCustom[1] = choosedCustom[1] || {};
+                    //     Vue.set(choosedCustom[1], getKey(m), getKey(m));
+                    //     break;
+                    // case getKey(m) < 30:
+                    //     choosedCustom[2] = choosedCustom[2] || {};
+                    //     Vue.set(choosedCustom[2], getKey(m), getKey(m));
+                    //     break;
+                    // case getKey(m) < 40:
+                    //     choosedCustom[3] = choosedCustom[3] || {};
+                    //     Vue.set(choosedCustom[3], getKey(m), getKey(m));
+                    //     break;
+                    // case getKey(m) < 50:
+                    //     choosedCustom[4] = choosedCustom[4] || {};
+                    //     Vue.set(choosedCustom[4], getKey(m), getKey(m));
+                    //     break;
+                    // case getKey(m) < 60:
+                    //     choosedCustom[5] = choosedCustom[5] || {};
+                    //     Vue.set(choosedCustom[5], getKey(m), getKey(m));
+                    //     break;
+                    // case getKey(m) < 70:
+                    //     choosedCustom[6] = choosedCustom[6] || {};
+                    //     Vue.set(choosedCustom[6], getKey(m), getKey(m));
+                    //     break;
+                    // case getKey(m) < 80:
+                    //     choosedCustom[7] = choosedCustom[7] || {};
+                    //     Vue.set(choosedCustom[7], getKey(m), getKey(m));
+                    //     break;
+                    // case getKey(m) <= 90:
+                    //     choosedCustom[8] = choosedCustom[8] || {};
+                    //     Vue.set(choosedCustom[8], getKey(m), getKey(m));
+                    //     break;
                 }
+
+                var form = document.getElementById('update');
+                    $(form).find('input#wonID').val(getKey(m));
+
+                var formData = new FormData(form);
+                $.ajax({
+                    type: 'POST',
+                    url: form.getAttribute('action'),
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    async: true,
+                }).done(function(result) {
+                    console.log(result);
+                }).fail(function(xhr, status, error) {
+                    console.error(xhr, status, error);
+                }).always(function() {
+                });
 
                 list[m.index].style.color = color;
                 return m.name;
@@ -141,7 +160,7 @@ while(i < 91) {
                 this.selected = num;
             },
             toggle: function(){
-                console.log(localStorage);
+                // console.log(localStorage);
                 if(this.running){
                     TagCanvas.SetSpeed('myCanvas', speed());
                     var ret = lottery(this.selected);

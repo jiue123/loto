@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -13,7 +14,9 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin.index');
+        $allGuest = Client::where('won', 0)->get();
+
+        return view('layouts.admin.index', compact('allGuest'));
     }
 
     /**
@@ -68,7 +71,9 @@ class MainController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \DB::table('clients')->where("id", $request->id)->update(['won' => 1]);
+
+        return 'done';
     }
 
     /**

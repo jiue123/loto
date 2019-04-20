@@ -26,6 +26,7 @@ class ClientPost extends FormRequest
         return [
             'name' => 'required',
             'phone' => 'required|numeric|unique:clients,phone',
+            'email' => 'required|string|email|max:255|unique:clients',
         ];
     }
 }

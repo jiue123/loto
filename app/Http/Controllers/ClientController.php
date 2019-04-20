@@ -56,8 +56,10 @@ class ClientController extends Controller
         Client::create([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
             'matrix' => json_encode($matrix),
-            'refresh' => 0
+            'refresh' => 0,
+            'won' => 0,
         ]);
 
         return redirect()->route('guest.show', ['id' => $request->input('phone')]);

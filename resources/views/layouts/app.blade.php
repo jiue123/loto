@@ -38,7 +38,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('alreadyHaveAccount') }}">{{ __('Already Have Account') }}</a>
+                                <a class="nav-link" href="{{ route('alreadyHaveAccount') }}">{{ __('Registered') }}</a>
                             </li>
                             {{--<li class="nav-item">--}}
                                 {{--<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>--}}

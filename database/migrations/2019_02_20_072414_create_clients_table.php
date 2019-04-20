@@ -17,8 +17,10 @@ class CreateClientsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('phone', 50);
+            $table->string('email')->unique();
             $table->json('matrix');
             $table->integer('refresh')->default(0);
+            $table->integer('won')->default(0);
             $table->timestamps();
         });
     }

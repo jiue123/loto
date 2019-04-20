@@ -18,4 +18,7 @@ Route::post('redirectToShow', 'ClientController@redirectToShow')->name('redirect
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('main', 'MainController');
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('/', 'MainController');
+    Route::resource('main', 'MainController');
+});
